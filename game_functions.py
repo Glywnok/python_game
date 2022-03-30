@@ -36,6 +36,9 @@ def update_screen(game_settings, screen, ship, bullets):
     screen.fill(game_settings.bg_color)
     for bullet in bullets.sprites():
         bullet.draw_bullet()
+        if bullet.rect.bottom <= 0:
+            bullets.remove(bullets)
+        print(len(bullets))
     # add ship to the screen
     ship.blitme()
     # display the last screen
