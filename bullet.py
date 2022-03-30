@@ -1,12 +1,12 @@
 import pygame
 
-from pygame.script import Sprite
+from pygame.sprite import Sprite
 
 class Bullet(Sprite):
     """Bullet controll class"""
     def __init__(self, game_settings, screen, ship):
         """Create bullet at ship position"""
-        super.__init__()
+        super().__init__()
         self.screen = screen
         #create bullet
         self.rect = pygame.Rect(0, 0, game_settings.bullet_width, game_settings.bullet_height)
