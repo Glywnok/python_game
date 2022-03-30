@@ -11,6 +11,7 @@ def check_keydown_events(event, game_settings, screen, ship, bullets):
     if event.key == pygame.K_SPACE:
         new_bullet  = Bullet(game_settings, screen, ship)
         bullets.add(new_bullet)
+        #fire_bullet(game_settings, screen, ship,bullets)
 
 def check_keyup_events(event, ship):
     """Check keyboard activities"""
@@ -50,3 +51,8 @@ def update_bullets(bullets):
     for bullet in bullets.copy():
         if bullet.rect.bottom <= 0:
             bullets.remove(bullet)
+
+def fire_bullet(event, game_settings, screen, ship, bullets):
+    if len(bullets) < game_settings.bullets_allowed:
+        new_bullet = Bullet(game_settings, screen, ship)
+        bullets.add(new_bullet)
