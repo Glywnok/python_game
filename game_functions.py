@@ -33,7 +33,7 @@ def check_events(game_settings, screen, ship, bullets):
             check_keyup_events(event, ship)
 
 
-def update_screen(game_settings, screen, ship, bullets):
+def update_screen(game_settings, screen, ship, alien, bullets):
     """Update image on screen and draw new screen, eg frame after frame"""
     # Background screen fill
     screen.fill(game_settings.bg_color)
@@ -44,6 +44,8 @@ def update_screen(game_settings, screen, ship, bullets):
         print(len(bullets))
     # add ship to the screen
     ship.blitme()
+    #add alien to the screen
+    alien.blitme()
     # display the last screen
     pygame.display.flip()
 
