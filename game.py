@@ -16,6 +16,8 @@ def run_game():
     #create ship
     ship = Ship(game_settings, screen)
     bullets = Group()
+    aliens = Group()
+    gf.create_fleet(game_settings, screen, aliens)
 
     #Create alien
     alien = Alien(game_settings, screen)
@@ -24,7 +26,7 @@ def run_game():
         gf.check_events(game_settings, screen, ship, bullets)
         ship.update()
         gf.update_bullets(bullets)
-        gf.update_screen(game_settings, screen, ship, alien, bullets)
+        gf.update_screen(game_settings, screen, ship, aliens, bullets)
 
 # test game
 run_game()
