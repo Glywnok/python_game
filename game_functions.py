@@ -12,6 +12,8 @@ def check_keydown_events(event, game_settings, screen, ship, bullets):
         new_bullet  = Bullet(game_settings, screen, ship)
         bullets.add(new_bullet)
         #fire_bullet(game_settings, screen, ship,bullets)
+    if event.key == pygame.K_q:
+        sys.exit()
 
 def check_keyup_events(event, ship):
     """Check keyboard activities"""
