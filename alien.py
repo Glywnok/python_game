@@ -18,6 +18,14 @@ class Alien(Sprite):
     def blitme(self):
         self.screen.blit(self.image, self.rect)
     def update(self):
-        """Update alien position"""
-        self.x += self.game_settings.alien_speed_factor
+        """Update alien position to right and left"""
+        self.x += self.game_settings.alien_speed_factor * self.game_settings.fleet_direction
         self.rect.x = self.x
+    def check_edges(self):
+        screen_rect = self.screen.get_rect()
+        if self.rect.right >= screen_rect.right:
+            return True
+        elif self.rect.left <= 0:
+            return True
+        else:
+            return False
