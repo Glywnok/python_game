@@ -34,7 +34,7 @@ def check_events(game_settings, screen, ship, bullets):
             check_keyup_events(event, ship)
 
 
-def update_screen(game_settings, screen, ship, aliens, bullets):
+def update_screen(game_settings, screen, ship, alien, bullets):
     """Update image on screen and draw new screen, eg frame after frame"""
     # Background screen fill
     screen.fill(game_settings.bg_color)
@@ -46,7 +46,7 @@ def update_screen(game_settings, screen, ship, aliens, bullets):
     # add ship to the screen
     ship.blitme()
     #add alien to the screen
-    aliens.draw(screen)
+    alien.draw(screen)
     # display the last screen
     pygame.display.flip()
 
@@ -64,16 +64,16 @@ def fire_bullet(event, game_settings, screen, ship, bullets):
 
 
 def create_fleet(game_settings, screen, aliens):
-    """Create alien fleet"""
-    # Create alien and compute how much aliens can exist in one row
+    """Create alines fleet"""
+    # Create aliend and compute how much aliens can exists at the row
     alien = Alien(game_settings, screen)
     alien_width = alien.rect.width
-    avaible_space_x = game_settings.screen_width -2 * alien_width
-    number_aliens_x = int(avaible_space_x / (2 * alien_width))
-    #create first row
+    available_space_x = game_settings.screen_width - 2 * alien_width
+    number_aliens_x = int(available_space_x / (2 * alien_width))
+    # create first row
     for alien_number in range(number_aliens_x):
-        #create alien and put it into the row
+        # create aliend and put it into row
         alien = Alien(game_settings, screen)
-        alien_x = alien_width + 2 * alien_width * alien_number
-        alien.rect.x = aliens.x
-        alien.add(alien)
+        alien.x = alien_width + 2 * alien_width * alien_number
+        alien.rect.x = alien.x
+        aliens.add(alien)
