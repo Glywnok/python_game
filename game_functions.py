@@ -62,18 +62,24 @@ def fire_bullet(event, game_settings, screen, ship, bullets):
         new_bullet = Bullet(game_settings, screen, ship)
         bullets.add(new_bullet)
 
+def get_number_aliens_x(game_settings, alien_width):
+    avaible_space_x = game_settings.screen_width - 2 * alien_width
+    number_aliens_x = int(avaible_space_x / (2 * alien_width))
+    return number_aliens_x
+
+def create_alien(game_settings, screen, aliens, alien_number):
+    # create aliend and put it into row
+    alien = Alien(game_settings, screen)
+    alien_width = alien.rect.width
+    alien.x = alien_width + 2 * alien_width * alien_number
+    alien.rect.x = alien.x
+    aliens.add(alien)
+
 
 def create_fleet(game_settings, screen, aliens):
     """Create alines fleet"""
     # Create aliend and compute how much aliens can exists at the row
     alien = Alien(game_settings, screen)
-    alien_width = alien.rect.width
-    available_space_x = game_settings.screen_width - 2 * alien_width
-    number_aliens_x = int(available_space_x / (2 * alien_width))
-    # create first row
+    number_aliens_x = get_number_aliens_x(game_settings, alien.rect.width)
     for alien_number in range(number_aliens_x):
-        # create aliend and put it into row
-        alien = Alien(game_settings, screen)
-        alien.x = alien_width + 2 * alien_width * alien_number
-        alien.rect.x = alien.x
-        aliens.add(alien)
+        create_alien(game_settings, screen, aliens, alien_number)
