@@ -54,11 +54,13 @@ def update_bullets(game_settings, ship, aliens, bullets, screen):
     for bullet in bullets.copy():
         if bullet.rect.bottom <= 0:
             bullets.remove(bullet)
-    collisions = pygame.sprite.groupcollide(bullets, aliens, True, True)
+    check_bullet_alien_collisions(game_settings, ship, aliens, bullets, screen)
 
+def check_bullet_alien_collisions(game_settings, ship, aliens, bullets, screen):
+    collisions = pygame.sprite.groupcollide(bullets, aliens, True, True)
     if len(aliens) == 0:
         nupud = ["GG"]
-        box = easygui.buttonbox("You won!", choices = nupud)
+        box = easygui.buttonbox("You won!", choices=nupud)
         if box == "GG":
             bullets.empty()
             create_fleet(game_settings, screen, ship, aliens)
