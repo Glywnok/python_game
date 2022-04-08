@@ -14,7 +14,7 @@ def run_game():
     pygame.init()
     game_settings = Settings()
     screen = pygame.display.set_mode((game_settings.screen_width, game_settings.screen_height ))
-    pygame.display.set_caption("Example Game, from the teacher")
+    pygame.display.set_caption("Space ship BETA")
     #Game statistics object
     stats = GameStats(game_settings)
 
@@ -29,9 +29,10 @@ def run_game():
 
     while True:
         gf.check_events(game_settings, screen, ship, bullets)
-        ship.update()
-        gf.update_bullets(game_settings, ship, aliens, bullets, screen )
-        gf.update_aliens(game_settings, stats, screen, ship, aliens, bullets)
+        if stats.game_active:
+            ship.update()
+            gf.update_bullets(game_settings, ship, aliens, bullets, screen )
+            gf.update_aliens(game_settings, stats, screen, ship, aliens, bullets)
         gf.update_screen(game_settings, screen, ship, aliens, bullets)
 
 # test game
