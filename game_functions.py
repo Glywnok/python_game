@@ -10,9 +10,7 @@ def check_keydown_events(event, game_settings, screen, ship, bullets):
     if event.key == pygame.K_LEFT:
         ship.moving_left = True
     if event.key == pygame.K_SPACE:
-        new_bullet  = Bullet(game_settings, screen, ship)
-        bullets.add(new_bullet)
-        #fire_bullet(game_settings, screen, ship,bullets)
+        fire_bullet(game_settings, screen, ship, bullets)
     if event.key == pygame.K_q:
         sys.exit()
 
@@ -50,19 +48,20 @@ def update_screen(game_settings, screen, ship, alien, bullets):
     # display the last screen
     pygame.display.flip()
 
-def update_bullets(bullets):
+def update_bullets(aliens, bullets):
     bullets.update()
     for bullet in bullets.copy():
         if bullet.rect.bottom <= 0:
             bullets.remove(bullet)
+    collisions = pygame.sprite.groupcollide(bullets, aliens, True, True)
 
-def fire_bullet(event, game_settings, screen, ship, bullets):
+def fire_bullet(game_settings, screen, ship, bullets):
     if len(bullets) < game_settings.bullets_allowed:
         new_bullet = Bullet(game_settings, screen, ship)
         bullets.add(new_bullet)
 
 def get_number_aliens_x(game_settings, alien_width):
-    avaible_space_x = game_settings.screen_width - 2 * alien_width
+    avaible_space_x = game_settings.screen_width - 3 * alien_width
     number_aliens_x = int(avaible_space_x / (2 * alien_width))
     return number_aliens_x
 

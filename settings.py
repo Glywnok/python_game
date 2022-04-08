@@ -7,15 +7,15 @@ class Settings:
         self.screen_height = 1000
         self.bg_color = (42, 181, 202)
         #ship settings
-        self.ship_speed_factor = 0.423
+        self.ship_speed_factor = 1.23
         #Bullet settings
-        self.bullet_speed_factor = 0.75
-        self.bullet_width = 3
-        self.bullet_height = 15
+        self.bullet_speed_factor = 1.7
+        self.bullet_width = 2
+        self.bullet_height = 10
         self.bullet_color = (115, 115, 115)
-        #self.bullets_allowed = x
+        self.bullets_allowed = 2
         # Aliens
-        self.alien_speed_factor = 1.43
-        self.fleet_drop_speed = 1.23
+        self.alien_speed_factor = 2.3
+        self.fleet_drop_speed = 3
         #fleet direction right = 1, left = -1
         self.fleet_direction = 1

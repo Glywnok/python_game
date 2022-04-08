@@ -2,7 +2,7 @@ import pygame
 from pygame.sprite import Sprite
 
 class Alien(Sprite):
-    """Clas fot alien description"""
+    """Class fot alien description"""
     def __init__(self, game_settings, screen):
         """Create alien object and specify it's start position"""
         super().__init__()
