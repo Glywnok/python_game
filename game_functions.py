@@ -1,5 +1,6 @@
 import sys
 import pygame
+import easygui
 from bullet import Bullet
 from alien import Alien
 
@@ -48,12 +49,19 @@ def update_screen(game_settings, screen, ship, alien, bullets):
     # display the last screen
     pygame.display.flip()
 
-def update_bullets(aliens, bullets):
+def update_bullets(game_settings, ship, aliens, bullets):
     bullets.update()
     for bullet in bullets.copy():
         if bullet.rect.bottom <= 0:
             bullets.remove(bullet)
     collisions = pygame.sprite.groupcollide(bullets, aliens, True, True)
+
+    if len(aliens) == 0:
+        nupud = ["GG"]
+        screen = easygui.buttonbox("You won!", choices = nupud)
+        if screen == "GG":
+            bullets.empty()
+            create_fleet(game_settings, screen, ship, aliens)
 
 def fire_bullet(game_settings, screen, ship, bullets):
     if len(bullets) < game_settings.bullets_allowed:
