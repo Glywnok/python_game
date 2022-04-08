@@ -3,6 +3,9 @@ from pygame.sprite import Group
 
 from settings import Settings
 from ship import Ship
+
+from game_stats import GameStats
+
 from alien import Alien
 import game_functions as gf
 
@@ -12,6 +15,8 @@ def run_game():
     game_settings = Settings()
     screen = pygame.display.set_mode((game_settings.screen_width, game_settings.screen_height ))
     pygame.display.set_caption("Example Game, from the teacher")
+    #Game statistics object
+    stats = GameStats(game_settings)
 
     #create ship
     ship = Ship(game_settings, screen)
