@@ -112,7 +112,10 @@ def change_fleet_direction(game_settings, aliens):
         alien.rect.y += game_settings.fleet_drop_speed
     game_settings.fleet_direction *= -1
 
-def update_aliens(game_settings, aliens):
+def update_aliens(game_settings, ship, aliens):
     #Update aliens position
     check_fleet_edges(game_settings, aliens)
     aliens.update()
+    #Check collisions between ship and alien
+    if pygame.sprite.spritecollideany(ship, aliens):
+        print("Ship hit")
