@@ -3,6 +3,7 @@ import pygame
 import easygui
 from bullet import Bullet
 from alien import Alien
+from time import sleep
 
 def check_keydown_events(event, game_settings, screen, ship, bullets):
     """Check keyboard activities"""
@@ -112,10 +113,23 @@ def change_fleet_direction(game_settings, aliens):
         alien.rect.y += game_settings.fleet_drop_speed
     game_settings.fleet_direction *= -1
 
-def update_aliens(game_settings, ship, aliens):
+def update_aliens(game_settings, stats, screen, ship, aliens, bullets):
     #Update aliens position
     check_fleet_edges(game_settings, aliens)
     aliens.update()
     #Check collisions between ship and alien
     if pygame.sprite.spritecollideany(ship, aliens):
-        print("Ship hit")
+        ship_hit(game_settings, stats, screen, ship, aliens, bullets)
+
+def ship_hit(game_settings, stats, screen, ship, aliens, bullets):
+    #Ships left minus one
+    stats.ships_left -= 1
+    #Aliens and bullets groups are deleted, e.g. no aliens and bullets on the screen
+    aliens.empty()
+    bullets.empty()
+    # Create new aliens fleet
+    create_fleet(game_settings, screen, ship, aliens)
+    #center ship
+    ship.ship_center()
+    #pause
+    sleep(2)
