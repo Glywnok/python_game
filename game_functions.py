@@ -49,7 +49,7 @@ def update_screen(game_settings, screen, ship, alien, bullets):
     # display the last screen
     pygame.display.flip()
 
-def update_bullets(game_settings, ship, aliens, bullets):
+def update_bullets(game_settings, ship, aliens, bullets, screen):
     bullets.update()
     for bullet in bullets.copy():
         if bullet.rect.bottom <= 0:
@@ -58,8 +58,8 @@ def update_bullets(game_settings, ship, aliens, bullets):
 
     if len(aliens) == 0:
         nupud = ["GG"]
-        screen = easygui.buttonbox("You won!", choices = nupud)
-        if screen == "GG":
+        box = easygui.buttonbox("You won!", choices = nupud)
+        if box == "GG":
             bullets.empty()
             create_fleet(game_settings, screen, ship, aliens)
 
